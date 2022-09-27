@@ -1,6 +1,8 @@
+import Exercises from "./screens/Exercises"
+
 function App() {
   return (
-    <div>Hello</div>
+    <Exercises />
   )
 }
 
