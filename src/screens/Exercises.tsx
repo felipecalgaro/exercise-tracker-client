@@ -17,17 +17,22 @@ export default function Exercises() {
   }, [])
 
   return (
-    <div>
+    <div className="h-screen">
       <Navbar />
-      <div className="bg-purple-custom">
-        {
-          exercises ? (
-            <ExerciseCard days={exercises[exercises.length - 1].days} name={exercises[exercises.length - 1].name} />
-          ) : (
-            <p>Loading</p>
-          )
-        }
-      </div>
+      {
+        exercises ? (
+          <div className="bg-purple-custom w-full min-h-[calc(100%-4rem)] py-6 flex justify-center items-start">
+            <div className="flex justify-evenly items-center flex-wrap gap-16 py-16 w-3/4">
+              <ExerciseCard days={exercises[exercises.length - 1].days} name={exercises[exercises.length - 1].name} />
+              <ExerciseCard days={exercises[exercises.length - 1].days} name={exercises[exercises.length - 1].name} />
+              <ExerciseCard days={exercises[exercises.length - 1].days} name={exercises[exercises.length - 1].name} />
+              <ExerciseCard days={exercises[exercises.length - 1].days} name={exercises[exercises.length - 1].name} />
+            </div>
+          </div>
+        ) : (
+          <p className="text-center text-black font-roboto mt-16 text-2xl">Loading...</p>
+        )
+      }
     </div>
   )
 }
