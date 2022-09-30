@@ -17,6 +17,9 @@ module.exports = {
       },
       fontFamily: {
         'roboto': 'Roboto'
+      },
+      boxShadow: {
+        'custom': '2px 2px 12px 6px rgba(0, 0, 0, 0.25)'
       }
     },
   },
