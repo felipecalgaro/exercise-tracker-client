@@ -28,7 +28,7 @@ module.exports = {
         }
       },
       animation: {
-        slide: 'slide .4s ease-out'
+        slide: 'slide .3s ease-out'
       }
     },
   },
