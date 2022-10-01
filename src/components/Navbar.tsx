@@ -2,9 +2,12 @@ import { SuccessButton } from "./SuccessButton";
 import Logo from '../assets/Logo.svg'
 import { useState } from "react";
 
-export function Navbar() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
+interface NavbarProps {
+  isSidebarOpen: boolean
+  setIsSidebarOpen: (arg: boolean) => void
+}
 
+export function Navbar({ isSidebarOpen, setIsSidebarOpen }: NavbarProps) {
   return (
     <div className="bg-black-custom flex justify-between items-center w-full h-16 p-6">
       <div className="flex justify-start items-center gap-2 p-2 flex-wrap w-16 hover:cursor-pointer" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
