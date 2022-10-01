@@ -1,6 +1,4 @@
-import { SuccessButton } from "./SuccessButton";
 import Logo from '../assets/Logo.svg'
-import { useState } from "react";
 
 interface NavbarProps {
   isSidebarOpen: boolean
@@ -16,7 +14,6 @@ export function Navbar({ isSidebarOpen, setIsSidebarOpen }: NavbarProps) {
         <span className="bg-white h-1 w-10 rounded-sm"></span>
       </div>
       <img src={Logo} alt='logo' className="h-10" />
-      <SuccessButton text="New" />
     </div>
   )
 }

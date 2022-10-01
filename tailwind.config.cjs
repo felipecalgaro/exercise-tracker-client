@@ -29,6 +29,9 @@ module.exports = {
       },
       animation: {
         slide: 'slide .3s ease-out'
+      },
+      screens: {
+        'xs': '360px'
       }
     },
   },
