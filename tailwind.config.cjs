@@ -20,6 +20,15 @@ module.exports = {
       },
       boxShadow: {
         'custom': '2px 2px 12px 6px rgba(0, 0, 0, 0.25)'
+      },
+      keyframes: {
+        slide: {
+          '0%': { transform: 'translateX(-24rem)' },
+          '100%': { transform: 'translateX(0)' }
+        }
+      },
+      animation: {
+        slide: 'slide .4s ease-out'
       }
     },
   },
