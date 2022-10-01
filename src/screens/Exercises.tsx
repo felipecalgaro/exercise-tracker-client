@@ -27,8 +27,8 @@ export default function Exercises() {
           <div className="bg-purple-custom w-full min-h-[calc(100%-4rem)] py-6 flex justify-center items-start">
             <div className="flex justify-evenly items-center flex-wrap gap-32 py-16 px-96">
               {isSidebarOpen && (
-                <div className="w-1/5 bg-black-custom text-white h-[calc(100%-4rem)] absolute animate-slide left-0 transition-all top-16 flex justify-center items-start py-10 flex-wrap">
-                  <div className="rounded placeholder:text-gray-600 placeholder:font-roboto bg-[#161616] px-5 py-2 flex justify-center items-center gap-3">
+                <div className="w-1/5 bg-black-custom text-white h-[calc(100%-4rem)] absolute animate-slide left-0 transition-all top-16 flex flex-col justify-start items-center py-10 gap-8">
+                  <div className="rounded placeholder:text-gray-600 placeholder:font-roboto bg-[#161616] px-5 py-2 mb-16 flex justify-center items-center gap-3">
                     <label htmlFor="name"><MagnifyingGlass size={20} /></label>
                     <input
                       type="text"
@@ -43,11 +43,13 @@ export default function Exercises() {
                   </div>
 
                   {exercises
-                    .filter(exercise => exercise.name.toLowerCase().slice(0, exerciseNameInputValue.length).includes(exerciseNameInputValue.toLowerCase())) // filter by order of character, and not if just includes the string
+                    .filter(exercise => exercise.name.toLowerCase().slice(0, exerciseNameInputValue.length).includes(exerciseNameInputValue.toLowerCase())) // filter first character(s), and not if just includes the string
                     .map(exercise => (
                       <div className="flex justify-center items-center w-full gap-8">
-                        <p className="text-lg">{exercise.name}</p>
-                        <ArrowRight size={24} />
+                        <div className="rounded w-2/3 bg-[#161616] flex justify-between items-center px-10 py-2 overflow-x-auto cursor-pointer hover:bg-[#161616]/70 active:scale-95 transition-all duration-200 select-none ">
+                          <p className="text-lg">{exercise.name}</p>
+                          <ArrowRight size={24} />
+                        </div>
                       </div>
                     ))}
                 </div>
