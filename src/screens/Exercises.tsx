@@ -1,3 +1,4 @@
+import axios from "axios";
 import { ArrowRight, MagnifyingGlass } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { ExerciseCard } from "../components/ExerciseCard";
@@ -5,15 +6,20 @@ import { Navbar } from "../components/Navbar";
 import { SuccessButton } from "../components/SuccessButton";
 import { ExerciseProps } from "../types/exercise";
 
+
 export default function Exercises() {
   const [exercises, setExercises] = useState<ExerciseProps[] | undefined>(undefined)
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
   const [exerciseNameInputValue, setExerciseNameInputValue] = useState<string>('')
 
+  async function handleRemove(id: string) {
+    const { data } = await axios.delete(`http://localhost:3333/exercises/${id}`)
+    setExercises(data)
+  }
+
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch('http://localhost:3333/exercises')
-      const data = await res.json()
+      const { data } = await axios.get('http://localhost:3333/exercises')
       setExercises(data)
     }
 
@@ -43,7 +49,7 @@ export default function Exercises() {
                     />
                   </div>
 
-                  {exercises
+                  {exercises.length > 0 ? exercises
                     .filter(exercise => exercise.name.toLowerCase().slice(0, exerciseNameInputValue.length).includes(exerciseNameInputValue.toLowerCase())) // filter first character(s), and not if just includes the string
                     .map(exercise => (
                       <div className="flex justify-center items-center w-full gap-8">
@@ -52,13 +58,15 @@ export default function Exercises() {
                           <ArrowRight size={24} />
                         </div>
                       </div>
-                    ))}
+                    )) : (
+                    <div className="text-zinc-500">No exercises found.</div>
+                  )}
 
                   <SuccessButton text="New" />
                 </div>
               )}
               {exercises.map(exercise => (
-                <ExerciseCard days={exercise.days} name={exercise.name} />
+                <ExerciseCard id={exercise.id} days={exercise.days} name={exercise.name} handleRemove={handleRemove} />
               ))}
             </div>
           </div>
