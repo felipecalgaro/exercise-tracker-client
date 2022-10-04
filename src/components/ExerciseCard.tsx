@@ -1,7 +1,7 @@
 import { ArrowRight } from "phosphor-react";
 import { ExerciseProps } from "../types/exercise";
-import { DangerButton } from "./DangerButton";
-import formatDateFromDatabase from "../utils/formatDate";
+import { DangerButton } from "./RemoveButton";
+import { formatDateFromDatabase } from "../utils/formatDate";
 
 interface ExerciseCardProps extends ExerciseProps {
   handleRemove: (id: string) => void

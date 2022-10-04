@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ArrowRight, MagnifyingGlass } from "phosphor-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { Navbar } from "../components/Navbar";
 import { SuccessButton } from "../components/SuccessButton";
@@ -12,9 +13,15 @@ export default function Exercises() {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
   const [exerciseNameInputValue, setExerciseNameInputValue] = useState<string>('')
 
+  const navigate = useNavigate()
+
   async function handleRemove(id: string) {
     const { data } = await axios.delete(`http://localhost:3333/exercises/${id}`)
     setExercises(data)
+  }
+
+  function handleClick() {
+    navigate('/exercises/new')
   }
 
   useEffect(() => {
@@ -31,10 +38,10 @@ export default function Exercises() {
       <Navbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
       {
         exercises ? (
-          <div className="bg-purple-custom w-full min-h-[calc(100%-4rem)] py-6 flex justify-center items-start">
+          <div className="bg-purple-custom w-full min-h-[calc(100%-4rem)] py-6 flex justify-center items-start relative">
             <div className="flex justify-evenly items-center flex-wrap gap-32 py-16 xs:px-12 px-0">
               {isSidebarOpen && (
-                <div className="sm:w-96 w-full bg-black-custom text-white h-[calc(100%-4rem)] absolute animate-slide left-0 transition-all top-16 flex flex-col justify-start items-center py-10 gap-8">
+                <div className="sm:w-96 w-full bg-black-custom text-white h-full absolute animate-slide left-0 top-0 transition-all flex flex-col justify-start items-center py-10 gap-8">
                   <div className="rounded placeholder:text-gray-600 placeholder:font-roboto bg-[#161616] xs:px-5 px-0 py-2 mb-16 flex justify-center items-center gap-3">
                     <label htmlFor="name"><MagnifyingGlass size={20} /></label>
                     <input
@@ -62,7 +69,7 @@ export default function Exercises() {
                     <div className="text-zinc-500">No exercises found.</div>
                   )}
 
-                  <SuccessButton text="New" />
+                  <SuccessButton handleClick={handleClick} text="New" />
                 </div>
               )}
               {exercises.map(exercise => (
