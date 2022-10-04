@@ -1,34 +1,40 @@
 import { Input } from "../components/Input";
 import { SubmitButton } from "../components/SubmitButton";
 import MacButtons from '../assets/mac-buttons.svg'
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import axios from "axios";
 import { formatDateFromForm } from "../utils/formatDate";
+import { useNavigate } from "react-router-dom";
 
-async function handleSubmit(e: FormEvent) {
-  e.preventDefault()
-  const formData = new FormData(e.target as HTMLFormElement)
-  const data = Object.fromEntries(formData)
-
-  console.log(data);
-
-  try {
-    const exercises = await axios.post('http://localhost:3333/exercises', {
-      exercise: {
-        name: data.name
-      },
-      day: {
-        weight: Number(data.weight),
-        repetitions: Number(data.repetitions),
-        date: formatDateFromForm(data.day as string, data.month as string, data.year as string)
-      }
-    })
-  } catch (err) {
-    console.log(err);
-  }
-}
 
 export function AddExercise() {
+  const [errorOnSubmit, setErrorOnSubmit] = useState<boolean>(false)
+  const navigate = useNavigate()
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+    const formData = new FormData(e.target as HTMLFormElement)
+    const data = Object.fromEntries(formData)
+
+    try {
+      await axios.post('http://localhost:3333/exercises', {
+        exercise: {
+          name: data.name
+        },
+        day: {
+          weight: Number(data.weight),
+          repetitions: Number(data.repetitions),
+          date: formatDateFromForm(data.day as string, data.month as string, data.year as string)
+        }
+      })
+
+      setErrorOnSubmit(false)
+      navigate('/exercises')
+    } catch (err) {
+      setErrorOnSubmit(true)
+    }
+  }
+
   return (
     <div className="bg-purple-custom">
       <div className="h-screen flex justify-center items-center">
@@ -62,6 +68,9 @@ export function AddExercise() {
               </div>
             </div>
             <SubmitButton />
+            <div>
+              <h1 className={`text-light-red ${errorOnSubmit ? 'visible' : 'hidden'}`}>Error while adding exercise. Please check the informations given.</h1>
+            </div>
           </form>
         </div>
       </div>
