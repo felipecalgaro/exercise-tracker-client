@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { Navbar } from "../components/Navbar";
-import { SuccessButton } from "../components/SuccessButton";
+import { AddButton } from "../components/AddButton";
 import { ExerciseProps } from "../types/exercise";
 
 
@@ -69,7 +69,7 @@ export default function Exercises() {
                     <div className="text-zinc-500">No exercises found.</div>
                   )}
 
-                  <SuccessButton handleClick={handleClick} text="New" />
+                  <AddButton handleClick={handleClick} />
                 </div>
               )}
               {exercises.map(exercise => (
