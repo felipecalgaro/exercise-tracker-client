@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Input } from "../components/Input";
 import { SubmitButton } from "../components/SubmitButton";
 import MacButtons from '../assets/mac-buttons.svg'
@@ -7,7 +7,8 @@ import { formatDateFromForm } from "../utils/formatDate";
 import axios from "axios";
 
 export function AddDay() {
-  const { exerciseName } = useParams()
+  const { state } = useLocation()
+  const { exerciseId } = useParams()
   const [errorOnSubmit, setErrorOnSubmit] = useState<boolean>(false)
   const navigate = useNavigate()
 
@@ -17,14 +18,14 @@ export function AddDay() {
     const data = Object.fromEntries(formData)
 
     try {
-      await axios.post(`http://localhost:3333/days/${exerciseName}`, {
+      await axios.post(`http://localhost:3333/days/${exerciseId}`, {
         weight: Number(data.weight),
         repetitions: Number(data.repetitions),
         date: formatDateFromForm(data.day as string, data.month as string, data.year as string)
       })
 
       setErrorOnSubmit(false)
-      navigate(`/exercises/${exerciseName}`)
+      navigate(`/exercises/${exerciseId}`)
     } catch (err) {
       setErrorOnSubmit(true)
     }
@@ -50,7 +51,7 @@ export function AddDay() {
           >
             <div className="flex justify-center items-center gap-20">
               <div className="pt-3">
-                <p className="font-light text-2xl text-white">{exerciseName}</p>
+                <p className="font-light text-2xl text-white">{state.exerciseName}</p>
               </div>
               <div className="flex justify-center items-center gap-10">
                 <Input inputId="month" label="Month" type="number" />

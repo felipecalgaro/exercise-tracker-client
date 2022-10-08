@@ -7,13 +7,13 @@ import { EditButton } from "../components/EditButton";
 import { AddButton } from "../components/AddButton";
 
 export function Exercise() {
-  const { exerciseName } = useParams()
+  const { exerciseId } = useParams()
   const [exercise, setExercise] = useState<ExerciseProps | undefined>(undefined)
   const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get(`http://localhost:3333/exercises/${exerciseName}`)
+      const { data } = await axios.get(`http://localhost:3333/exercises/${exerciseId}`)
       setExercise(data)
     }
 
@@ -41,7 +41,7 @@ export function Exercise() {
           </div>
           <div className="flex justify-end items-center gap-5 w-full px-10 py-4 mt-4">
             <EditButton />
-            <AddButton handleClick={() => navigate(`days/new`)} />
+            <AddButton handleClick={() => navigate(`days/new`, { state: { exerciseName: exercise?.name } })} />
           </div>
         </div>
       </div>

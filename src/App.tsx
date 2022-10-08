@@ -10,8 +10,8 @@ function App() {
       <Routes>
         <Route path="/exercises" element={<Exercises />} />
         <Route path="/exercises/new" element={<AddExercise />} />
-        <Route path="/exercises/:exerciseName" element={<Exercise />} />
-        <Route path="/exercises/:exerciseName/days/new" element={<AddDay />} />
+        <Route path="/exercises/:exerciseId" element={<Exercise />} />
+        <Route path="/exercises/:exerciseId/days/new" element={<AddDay />} />
       </Routes>
     </BrowserRouter>
   )
