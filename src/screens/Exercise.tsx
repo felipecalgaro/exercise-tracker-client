@@ -1,19 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ExerciseProps } from "../types/exercise";
 import MacButtons from '../assets/mac-buttons.svg'
 import { EditButton } from "../components/EditButton";
 import { AddButton } from "../components/AddButton";
 
 export function Exercise() {
-  const location = useLocation()
+  const { exerciseName } = useParams()
   const [exercise, setExercise] = useState<ExerciseProps | undefined>(undefined)
   const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get(`http://localhost:3333/exercises/${location.state.exerciseName}`)
+      const { data } = await axios.get(`http://localhost:3333/exercises/${exerciseName}`)
       setExercise(data)
     }
 
@@ -41,7 +41,7 @@ export function Exercise() {
           </div>
           <div className="flex justify-end items-center gap-5 w-full px-10 py-4 mt-4">
             <EditButton />
-            <AddButton handleClick={() => navigate(`${exercise?.name.toLowerCase().replace(' ', '-')}/days/new`)} />
+            <AddButton handleClick={() => navigate(`days/new`)} />
           </div>
         </div>
       </div>
