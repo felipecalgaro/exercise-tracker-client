@@ -1,11 +1,12 @@
 import { ArrowRight } from "phosphor-react";
 import { ExerciseProps } from "../types/exercise";
-import { DangerButton } from "./RemoveButton";
+import { RemoveButton } from "./RemoveButton";
 import { formatDateFromDatabase } from "../utils/formatDate";
 import { useNavigate } from 'react-router-dom'
+import { HandleRemove } from "../types/handleRemove";
 
 interface ExerciseCardProps extends ExerciseProps {
-  handleRemove: (id: string) => void
+  handleRemove: HandleRemove
 }
 
 export function ExerciseCard({ name, days, id, handleRemove }: ExerciseCardProps) {
@@ -19,7 +20,7 @@ export function ExerciseCard({ name, days, id, handleRemove }: ExerciseCardProps
       <p className="text-xl font-medium w-full text-center">{name}</p>
       <p className="font-light text-lg">{`${days[0].weight}kg • ${formatDateFromDatabase(days[0].date)}`}</p>
       <div className="flex justify-between items-center w-full">
-        <DangerButton handleRemove={handleRemove} id={id} />
+        <RemoveButton handleRemove={handleRemove} exerciseId={id} />
         <ArrowRight size={24} />
       </div>
     </div>

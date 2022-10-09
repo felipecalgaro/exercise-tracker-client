@@ -53,7 +53,7 @@ export function AddExercise() {
             autoComplete="off"
             onSubmit={handleSubmit}
           >
-            <div className="flex justify-center items-center gap-20">
+            <div className="flex justify-center items-center gap-20 mb-6">
               <div>
                 <Input inputId="name" label="Name" type="text" width='w-40' />
               </div>

@@ -34,7 +34,7 @@ export function AddDay() {
   return (
     <div className="bg-purple-custom">
       <div className="h-screen flex justify-center items-center">
-        <div className="bg-black-custom w-3/4 h-2/3 flex flex-col justify-start items-center px-16 py-12">
+        <div className="bg-black-custom w-3/4 h-2/3 flex flex-col justify-start items-center px-16 py-12 rounded shadow-custom">
           <img
             src={MacButtons}
             alt='mac buttons'
@@ -49,7 +49,7 @@ export function AddDay() {
             autoComplete="off"
             onSubmit={handleSubmit}
           >
-            <div className="flex justify-center items-center gap-20">
+            <div className="flex justify-center items-center gap-20 mb-6">
               <div className="pt-3">
                 <p className="font-light text-2xl text-white">{state.exerciseName}</p>
               </div>

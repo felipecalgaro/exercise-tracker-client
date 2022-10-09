@@ -15,6 +15,7 @@ export function Exercise() {
     async function fetchData() {
       const { data } = await axios.get(`http://localhost:3333/exercises/${exerciseId}`)
       setExercise(data)
+      console.log(data);
     }
 
     fetchData()
@@ -40,7 +41,7 @@ export function Exercise() {
             </div>
           </div>
           <div className="flex justify-end items-center gap-5 w-full px-10 py-4 mt-4">
-            <EditButton />
+            <EditButton handleClick={() => navigate(`days/edit`, { state: { exerciseName: exercise?.name } })} />
             <AddButton handleClick={() => navigate(`days/new`, { state: { exerciseName: exercise?.name } })} />
           </div>
         </div>

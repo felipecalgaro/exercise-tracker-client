@@ -1,10 +1,7 @@
 import { Plus } from "phosphor-react";
+import { NavigationButtonProps } from "../types/navigationButton";
 
-interface AddButtonProps {
-  handleClick: () => void
-}
-
-export function AddButton({ handleClick }: AddButtonProps) {
+export function AddButton({ handleClick }: NavigationButtonProps) {
   return (
     <button
       className="text-white bg-light-green px-4 py-1 flex items-center gap-2 rounded font-roboto hover:bg-dark-green active:scale-95 transition-all duration-300"

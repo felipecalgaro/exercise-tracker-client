@@ -1,0 +1,1 @@
+export type HandleRemove = (exerciseId: string, dayId?: string) => void
