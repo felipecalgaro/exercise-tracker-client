@@ -5,6 +5,8 @@ import { EditDay } from "./screens/EditDay"
 import { Exercise } from "./screens/Exercise"
 import { Exercises } from "./screens/Exercises"
 
+import '@tremor/react/dist/esm/tremor.css';
+
 function App() {
   return (
     <BrowserRouter>
