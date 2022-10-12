@@ -3,7 +3,7 @@ import { AddDay } from "./screens/AddDay"
 import { AddExercise } from "./screens/AddExercise"
 import { EditDay } from "./screens/EditDay"
 import { Exercise } from "./screens/Exercise"
-import Exercises from "./screens/Exercises"
+import { Exercises } from "./screens/Exercises"
 
 function App() {
   return (
