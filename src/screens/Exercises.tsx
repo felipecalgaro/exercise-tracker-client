@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ArrowRight, MagnifyingGlass } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { Navbar } from "../components/Navbar";
@@ -15,8 +15,9 @@ export function Exercises() {
 
   const navigate = useNavigate()
 
-  async function handleRemove(id: string) {
-    const { data } = await axios.delete(`http://localhost:3333/exercises/${id}`)
+  async function handleRemove(exerciseId: string, e: MouseEvent) {
+    e.stopPropagation()
+    const { data } = await axios.delete(`http://localhost:3333/exercises/${exerciseId}`)
     setExercises(data)
   }
 

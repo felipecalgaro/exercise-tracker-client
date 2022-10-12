@@ -11,7 +11,7 @@ export function RemoveButton({ handleRemove, exerciseId, dayId }: RemoveButtonPr
   return (
     <button
       className="text-white bg-light-red px-4 py-1 flex items-center gap-2 rounded font-roboto hover:bg-dark-red transition-colors duration-300"
-      onClick={dayId ? () => handleRemove(exerciseId, dayId) : () => handleRemove(exerciseId)}
+      onClick={dayId ? (e) => handleRemove(exerciseId, e, dayId) : (e) => handleRemove(exerciseId, e)}
       type="reset"
     >
       <TrashSimple size={20} weight='bold' />
