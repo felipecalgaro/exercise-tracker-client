@@ -9,11 +9,9 @@ const numberFormatter = (value: number) => (`${Intl.NumberFormat('us').format(va
 export function Chart({ days }: Pick<ExerciseProps, 'days'>) {
   const [selectedOption, setSelectedOption] = useState<'weight' | 'repetitions'>('weight');
 
-  useEffect(() => {
-    days.forEach(day => {
-      day.formattedDate = formatDateFromDatabase(day.date)
-    })
-  }, [])
+  days.forEach(day => {
+    day.formattedDate = formatDateFromDatabase(day.date)
+  })
 
   return (
     <Card decoration='top' decorationColor='green' maxWidth='max-w-full'>
