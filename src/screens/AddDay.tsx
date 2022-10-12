@@ -34,31 +34,31 @@ export function AddDay() {
   return (
     <div className="bg-purple-custom">
       <div className="h-screen flex justify-center items-center">
-        <div className="bg-black-custom w-3/4 h-2/3 flex flex-col justify-start items-center px-16 py-12 rounded shadow-custom">
+        <div className="bg-black-custom sm:w-3/4 w-11/12 min-h-2/3 h-auto flex flex-col justify-start items-center px-16 py-12 rounded shadow-custom">
           <img
             src={MacButtons}
             alt='mac buttons'
-            className="h-6 self-start select-none"
+            className="sm:h-6 h-5 self-start select-none"
             draggable="false"
           />
           <p className="font-roboto font-medium text-white text-2xl my-8">Add Day</p>
           <form
-            className="flex flex-col justify-start items-center h-full gap-12 pt-12 mt-8"
+            className="flex flex-col justify-start items-center h-full gap-12 pt-12 lg:mt-8 mt-0"
             action=""
             spellCheck="false"
             autoComplete="off"
             onSubmit={handleSubmit}
           >
-            <div className="flex justify-center items-center gap-20 mb-6">
+            <div className="flex flex-wrap justify-center items-center gap-x-20 gap-y-12 mb-6">
               <div className="pt-3">
                 <p className="font-light text-2xl text-white">{state.exerciseName}</p>
               </div>
-              <div className="flex justify-center items-center gap-10">
+              <div className="flex justify-center items-center xs:gap-10 gap-5 lg:w-auto w-full">
                 <Input inputId="month" label="Month" type="number" />
                 <Input inputId="day" label="Day" type="number" />
                 <Input inputId="year" label="Year" type="number" width='w-20' />
               </div>
-              <div className="flex justify-center items-center gap-10">
+              <div className="flex justify-center items-center xs:gap-10 gap-5">
                 <Input inputId="weight" label="Weight" type="number" />
                 <Input inputId="repetitions" label="Reps" type="number" />
               </div>
