@@ -15,7 +15,6 @@ export function Exercise() {
     async function fetchData() {
       const { data } = await axios.get(`http://localhost:3333/exercises/${exerciseId}`)
       setExercise(data)
-      console.log(data);
     }
 
     fetchData()
@@ -24,7 +23,7 @@ export function Exercise() {
   return (
     <div className="bg-purple-custom">
       <div className="h-screen flex justify-center items-center">
-        <div className="bg-black-custom w-3/4 h-2/3 flex flex-col justify-start items-center px-20 py-12">
+        <div className="bg-black-custom w-3/4 h-2/3 flex flex-col justify-start items-center px-20 py-12 rounded shadow-custom">
           <img
             src={MacButtons}
             alt='mac buttons'
