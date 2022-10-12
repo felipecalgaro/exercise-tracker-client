@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, MouseEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ExerciseProps } from "../types/exercise";
 import MacButtons from '../assets/mac-buttons.svg'
@@ -14,7 +14,7 @@ export function EditDay() {
   const [exercise, setExercise] = useState<ExerciseProps | undefined>(undefined)
   const navigate = useNavigate()
 
-  async function handleRemove(exerciseId: string, dayId: string) {
+  async function handleRemove(exerciseId: string, e: MouseEvent, dayId: string) {
     if (exercise!.days.length > 1) {
       const { data } = await axios.delete(`http://localhost:3333/days/${exerciseId}/${dayId}`)
       setExercise(data)
@@ -64,6 +64,7 @@ export function EditDay() {
               <form
                 className="flex flex-wrap justify-center items-center bg-zinc-900 rounded lg:w-full md:w-1/2 w-full h-auto xl:gap-x-24 gap-x-16 gap-y-10 py-4"
                 onSubmit={(e) => handleEdit(e, day.id)}
+                key={day.id}
               >
                 <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-2">
                   <p className="text-white font-light text-2xl font-roboto">{formatDateFromDatabase(day.date)}</p>
